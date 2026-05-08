@@ -22,14 +22,21 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 30px 0;
   color: #012F4A;
   font-family: 'DM Sans', sans-serif;
 }
 
+.nav-logo {
+  font-weight: 700;
+  margin-bottom: 10px; 
+}
+
 .menu {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  gap: 15px;
   list-style: none;
 }
 
@@ -69,6 +76,66 @@ body {
 #about {
   font-family: 'DM Sans', sans-serif;
   background: #EED1E1; 
+}
+
+.about-layout {
+    grid-template-columns: 1fr; /* Una sola columna */
+    text-align: center; /* Centramos el texto para que se vea mejor */
+  }
+
+  .profile-image-side {
+    grid-row: 1; /* Forzamos a que la foto sea lo primero en verse */
+    margin-bottom: 20px;
+  }
+
+  .photo-circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+/* --- MEDIA QUERIES PARA MÓVIL (Aquí está la magia) --- */
+@media (max-width: 768px) {
+  
+  /* Arreglo del Nav: Nombre arriba, Menú abajo con espacio */
+  .nav {
+    flex-direction: column; 
+    padding: 40px 0 20px 0; /* Mucho más aire arriba del nombre */
+    gap: 20px;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 15px; /* Espacio entre links */
+  }
+
+  /* Arreglo de Sobre Mí: Foto arriba centrada, Texto abajo */
+  .about-layout {
+    grid-template-columns: 1fr; /* Una sola columna */
+    text-align: center; /* Centramos el texto para que se vea mejor */
+  }
+
+  .profile-image-side {
+    grid-row: 1; /* Forzamos a que la foto sea lo primero en verse */
+    margin-bottom: 20px;
+  }
+
+  .photo-circle {
+    width: 200px; /* Un poco más pequeña en móvil para que no sature */
+    height: 200px;
+  }
+
+  .about-main h2 {
+    font-size: 2rem;
+  }
+
+  .services-list {
+    text-align: left; /* Los servicios mejor que sigan alineados a la izquierda */
+  }
 }
 
 .btn {
