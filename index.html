@@ -185,9 +185,9 @@
 
    
     .about-layout {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
         align-items: start;
     }
 
@@ -250,6 +250,7 @@
         .photo-circle {
             width: 250px;
             height: 250px;
+            object-fit: cover;
         }
     }
 
