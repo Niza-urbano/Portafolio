@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Niza Urbano - Diseñadora UX/UI & Frontend Developer">
+    <meta property="og:title" content="Niza Urbano — Portfolio">
+    <meta property="og:description" content="Diseño de experiencias digitales y desarrollo frontend con Vue.js">
+    <meta property="og:image" content="URL_DE_UNA_CAPTURA_DE_TU_WEB.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Niza Urbano — Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@300;400;700&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FCF9F7;
+            /* Un crema casi blanco, muy limpio */
+            --text: rgb(48, 46, 135);
+            /* Tu azul profundo */
+            --accent-soft: rgba(161, 217, 245, 0.37);
+            /* Salmón muy diluido */
+            --line: rgba(48, 46, 135, 0.1);
+            --font-main: 'DM Sans', sans-serif;
+            --font-display: 'outfit', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+            font-family: var(--font-main);
+        }
+
+        /* NAVEGACIÓN SILENCIOSA */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 2.5rem;
+            font-family: var(--font-main);
+            width: 100%;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--line);
+
+        }
+
+        .about-main h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .about-intro {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: var(--text);
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            column-gap: 60px;
+            row-gap: 0;
+            align-items: start;
+        }
+
+        /* Grilla de servicios/especialidades */
+        .services-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5px;
+            /* Espacio pequeño entre cada item */
+            margin-top: 0px;
+            /* Ajusta este valor para acercarlo más a la bio */
+        }
+
+        .service-item {
+            padding: 20px;
+            border-radius: 12px;
+            /* Bordes suaves para el efecto de color */
+            border-left: 3px solid transparent;
+            /* Línea invisible que aparecerá al hacer hover */
+            transition: all 0.3s ease;
+            /* Transición suave para el color */
+            cursor: default;
+        }
+
+        .service-item:hover {
+            background-color: rgba(242, 145, 140, 0.1);
+            /* Tu color salmón/rosado con transparencia */
+            border-left: 3px solid rgba(242, 145, 140, 0.634);
+            /* Aparece la línea de color */
+            transform: translateX(10px);
+            /* Desplazamiento sutil a la derecha */
+        }
+
+        /* Cambiar el color del título específicamente en hover */
+        .service-item:hover h3 {
+            color: rgb(242, 145, 140);
+        }
+
+        .service-item h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .service-item p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* La foto ocupa la columna 2 y se expande en las dos filas del texto */
+        .profile-image-side {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .photo-circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid var(--line);
+
+        }
+
+        .about-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 900px) {}
+
+        /* HERO */
+        .hero {
+            padding: 100px 0 160px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            font-weight: 700;
+            color: rgb(242, 145, 140);
+        }
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            font-size: 1.1rem;
+            color: rgba(48, 46, 135, 0.8);
+        }
+
+        /* SECCIONES EDITORIALES */
+        section {
+            padding: 120px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 60px;
+            display: block;
+            opacity: 0.5;
+        }
+
+        /* PROYECTOS: LISTA MINIMALISTA */
+        .project-item {
+            display: grid;
+            grid-template-columns: 0.5fr 1.5fr 1fr;
+            align-items: baseline;
+            padding: 40px 0;
+            border-top: 1px solid var(--line);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s ease;
+        }
+
+        .project-item:hover {
+            padding-left: 20px;
+            background: var(--accent-soft);
+        }
+
+        .project-item h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+        }
+
+        .project-year {
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            opacity: 0.5;
+        }
+
+        .project-role {
+            text-align: right;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 80px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+
+            .hero-meta,
+            .project-item,
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-role {
+                text-align: left;
+            }
+        }
+
+        /* Estructura de Contacto */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            margin-top: 40px;
+            align-items: start;
+        }
+
+
+
+        .contact-main h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .contact-main p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .contact-main,
+            .contact-links {
+                text-align: center;
+            }
+
+            .contact-main p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* Unificamos el contenedor de links de contacto */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            /* Misma distancia que en services-list */
+        }
+
+        /* Aplicamos el estilo de service-item a los links de contacto */
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* El mismo efecto HOVER que usas en sobremi */
+        .contact-item:hover {
+            background-color: rgba(242, 145, 140, 0.1);
+            border-left: 3px solid rgba(242, 145, 140, 0.634);
+            transform: translateX(10px);
+        }
+
+        /* Ajuste de tipografía interna */
+        .contact-item span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+            font-weight: 500;
+        }
+
+        .contact-item strong,
+        .contact-item p {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        /* Cambio de color en hover */
+        .contact-item:hover strong {
+            color: rgb(242, 145, 140);
+        }
+
+        /* Mail de contacto con el mismo estilo de la nav o similar */
+        .contact-mail {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px solid var(--line);
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-mail:hover {
+            color: rgb(242, 145, 140);
+            border-bottom-color: rgb(242, 145, 140);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <nav>
+            <div>Niza Urbano Díaz</div>
+            <div style="display: flex; gap: 30px;">
+                <div class="nav-links">
+                    <span><a href="#sobremi">Sobre mi</a></span>
+                    <span><a href="#proyectos">Proyectos</a></span>
+                    <span><a href="#contacto">Contacto</a></span>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1>Diseñadora <span>UX/UI</span> & Desarrolladora <span>Frontend</span></h1>
+            <div class="hero-meta">
+                <p>Especializada en crear sistemas de diseño coherentes y aplicaciones web escalables con Vue.js.</p>
+            </div>
+        </section>
+
+        <section id="sobremi">
+            <span class="section-label">01 / Perfil</span>
+
+            <div class="about-layout">
+                <div class="about-main">
+
+                    <h2>Niza Urbano Díaz</h2>
+                    <p class="about-intro">
+                        Diseñadora UX/UI y Desarrolladora Frontend con enfoque en la creación de experiencias digitales
+                        funcionales y accesibles.
+                        Especializada en la implementación técnica utilizando Vue.js y Figma , con sólida experiencia en
+                        entornos de trabajo Agile bajo metodologías Scrum y Kanban.
+                    </p>
+                </div>
+
+                <div class="profile-image-side">
+                    <div class="photo-circle">
+                        <img src="img/Ellipse9.png" alt="Niza Urbano Díaz" class="about-photo">
+                    </div>
+                </div>
+
+                <div class="services-list">
+                    <div class="service-item">
+                        <h3>Investigación de Usuarios UX</h3>
+                        <p>Me dedico a investigar y diseñar interfaces intuitivas centradas en el usuario. </p>
+                    </div>
+
+                    <div class="service-item">
+                        <h3>Diseño de interfaz UI</h3>
+                        <p>Diseño interfaces intuitivas centradas en el usuario con <strong>Figma</strong>, priorizando
+                            la accesibilidad.</p>
+                    </div>
+
+                    <div class="service-item">
+                        <h3> Desarrollo Frontend </h3>
+                        <p>Desarrollo aplicaciones web y movil escalables con <strong> Vue.js </strong> y
+                            <strong>Vite</strong>. Integración de diseño y desarrollo para crear experiencias completas
+                            de prototipo a producto funcional.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </section>
+
+
+
+        <section id="proyectos">
+            <span class="section-label">02 / Proyectos (2024—2026)</span>
+
+            <a href="https://www.behance.net/gallery/248157307/Mi-Primera-comida" class="project-item">
+                <span class="project-year">01</span>
+                <h3>Mi Primera Comida</h3>
+                <span class="project-role">UX Research / Product Design</span>
+            </a>
+
+            <a href="https://clima-app-xi-pink.vercel.app/" class="project-item">
+                <span class="project-year">02</span>
+                <h3>El Tiempo</h3>
+                <span class="project-role">Frontend Dev / Vue 3</span>
+            </a>
+
+            <a href="https://tidelaw.cl/" class="project-item">
+                <span class="project-year">03</span>
+                <h3>TideLaw </h3>
+                <span class="project-role">UI Design / Figma</span>
+            </a>
+        </section>
+
+        <section id="contacto">
+            <span class="section-label">03 / Contacto</span>
+            <div class="contact-layout">
+                <div class="contact-main">
+                    <h2>¿Trabajemos Juntos?</h2>
+                    <p>Estoy disponible para proyectos freelance, colaboraciones y posiciones que permitan contribuir,
+                        aprender y crecer.</p>
+                    <a href="mailto:niza.urbano@gmail.com" class="contact-mail">niza.urbano@gmail.com</a>
+                </div>
+
+                <div class="contact-links">
+                    <a href="https://linkedin.com/in/niza-urbano" target="_blank" class="contact-item">
+                        <span>LinkedIn</span>
+                        <strong>/niza-urbano</strong>
+                    </a>
+
+                    <a href="https://github.com/Niza-urbano" target="_blank" class="contact-item">
+                        <span>GitHub</span>
+                        <strong>/niza-urbano</strong>
+                    </a>
+
+                    <a href="https://behance.net/nizaurbano" target="_blank" class="contact-item">
+                        <span>Behance</span>
+                        <strong>/nizaurbano</strong>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <span>© 2026 Niza Urbano - Santiago, Chile</span>
+
+        </footer>
+    </div>
+
+    <script>
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) setTimeout(() => e.target.classList.add('on'), i * 90);
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    </script>
+
+</body>
+
+</html>
